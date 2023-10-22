@@ -82,6 +82,7 @@ trainer = transformers.Trainer(
         output_dir=config["output_dir"],
         bf16=True,
         ddp_find_unused_parameters=False,
+        load_best_model_at_end = True,
         run_name=f"{slugify(config['output_dir'])}-{datetime.now().strftime('%Y-%m-%d-%H-%M')}",
         dataloader_num_workers=accelerator.num_processes,
         **config["training"],
