@@ -1,8 +1,8 @@
-# South Park Geek Mistral-7B Fine-Tuning on Multiple GPUs
+# South Park Fanatic Mistral-7B Fine-Tuning on Multiple GPUs
 
-This repository contains scripts for performing Mistral-7B (and other LLMs)
-fine-tuning
-on multiple GPUs with `peft` for LoRA and `bitsandbytes` for quantization
+This repository contains scripts for
+- generating data with GPT-4 via `rq` 
+- Mistral-7B (and other LLMs) fine-tuning on multiple GPUs with `peft` for LoRA and `bitsandbytes` for quantization
 
 ## Instructions
 
@@ -22,7 +22,7 @@ base_model_id: "mistralai/Mistral-7B-v0.1"
 training_dataset_jsonl_path: /path/to/your/train_dataset.jsonl
 eval_dataset_jsonl_path: /path/to/your/eval_dataset.jsonl
 prompt_template: "### question: {input}\n ### answer: {output}"
-tokenizer_max_length: 512
+tokenizer_max_length: 256
 bnb_config:
   load_in_4bit: true
   bnb_4bit_use_double_quant: true
@@ -41,6 +41,7 @@ lora_config:
   ]
   bias: none
   lora_dropout: 0.05
+  task_type: CAUSAL_LM
 output_dir: /path/to/your/output/model
 training:
   optim: "paged_adamw_8bit"
@@ -97,8 +98,6 @@ and `output` field pair. Here are few example lines from the dataset:
   be used, warmup steps, maximum steps, batch size, logging steps, where to save
   logs, save strategy, evaluation strategy, and learning rate.
 
-Please ensure `train.py` has access to multiple GPUs to effectively use this
-setup.
 
 ## License
 
