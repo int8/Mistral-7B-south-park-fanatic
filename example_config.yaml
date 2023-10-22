@@ -1,7 +1,7 @@
 base_model_id: "mistralai/Mistral-7B-Instruct-v0.1"
 training_dataset_jsonl_path: /path/to/your/train_dataset.jsonl
 eval_dataset_jsonl_path: /path/to/your/eval_dataset.jsonl
-prompt_template: "question:{input}\n answer:{output}"
+prompt_template: "question: {input}\n answer: {output}"
 tokenizer_max_length: 256
 bnb_config:
   load_in_4bit: true
@@ -37,3 +37,4 @@ training:
   eval_steps: 100
   do_eval: true
   learning_rate: 2.5e-5
+

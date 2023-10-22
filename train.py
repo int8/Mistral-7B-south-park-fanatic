@@ -14,7 +14,8 @@ import torch
 import yaml
 from datasets import load_dataset
 from slugify import slugify
-from transformers import BitsAndBytesConfig, AutoModelForCausalLM, AutoTokenizer
+from transformers import BitsAndBytesConfig, AutoModelForCausalLM, \
+    AutoTokenizer, EarlyStoppingCallback
 from accelerate import Accelerator
 from peft import prepare_model_for_kbit_training, LoraConfig
 from peft import get_peft_model
@@ -85,6 +86,7 @@ trainer = transformers.Trainer(
         dataloader_num_workers=accelerator.num_processes,
         **config["training"],
     ),
+    callbacks = [EarlyStoppingCallback(early_stopping_patience=3)],
     data_collator=transformers.DataCollatorForLanguageModeling(tokenizer,
                                                                mlm=False),
 )
