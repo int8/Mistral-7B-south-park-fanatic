@@ -1,0 +1,11 @@
+bitsandbytes==0.41.0
+-e git+https://github.com/huggingface/transformers@08a2edfc6629a323effd7a85feafed9e6701e2dd#egg=transformers
+-e git+https://github.com/huggingface/accelerate@c7c99a30ea88f00c854017d362e72b9cf60c7db6#egg=accelerate
+-e git+https://github.com/huggingface/peft@56556faa17263be8ef1802c172141705b71c28dc#egg=peft
+python-slugify
+datasets
+scipy
+pyyaml
+docopt
+openai
+rq

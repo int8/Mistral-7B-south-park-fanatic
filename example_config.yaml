@@ -1,0 +1,39 @@
+base_model_id: "mistralai/Mistral-7B-Instruct-v0.1"
+training_dataset_jsonl_path: /path/to/your/train_dataset.jsonl
+eval_dataset_jsonl_path: /path/to/your/eval_dataset.jsonl
+prompt_template: "question:{input}\n answer:{output}"
+tokenizer_max_length: 256
+bnb_config:
+  load_in_4bit: true
+  bnb_4bit_use_double_quant: true
+  bnb_4bit_quant_type: "nf4"
+lora_config:
+  r: 64
+  target_modules: [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj",
+    "lm_head",
+  ]
+  bias: none
+  lora_dropout: 0.05
+  task_type: CAUSAL_LM
+output_dir: /path/to/your/output/model
+training:
+  optim: "paged_adamw_8bit"
+  warmup_steps: 1
+  per_device_train_batch_size: 1
+  gradient_accumulation_steps: 1
+  max_steps: 500
+  logging_steps: 25
+  logging_dir: /path/to/logging/dir,  # Directory for storing logs
+  save_strategy: "steps"
+  save_steps: 100
+  evaluation_strategy: "steps"
+  eval_steps: 100
+  do_eval: true
+  learning_rate: 2.5e-5
