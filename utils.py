@@ -13,7 +13,7 @@ to the series
 do not cite the season or episode
 answer shortly and funnily
 one, two sentences is good enough:
-
+ 
 
 {question}
 
@@ -36,13 +36,11 @@ def get_funny_answer(question, model_name):
 
 
 def openai_get_answer_job(
-        question, output_dir, openai_key, get_answer_f=get_funny_answer,
-        model_name="gpt-4"
+    question, output_dir, openai_key, get_answer_f=get_funny_answer, model_name="gpt-4"
 ):
     openai.api_key = openai_key
     answer = get_answer_f(question, model_name)
-    filename = hashlib.md5(
-        (answer + question + str(time.time())).encode()).hexdigest()
+    filename = hashlib.md5((answer + question + str(time.time())).encode()).hexdigest()
     os.makedirs(output_dir, exist_ok=True)
 
     with open(os.path.join(output_dir, f"{filename}.json"), "w") as fp:
