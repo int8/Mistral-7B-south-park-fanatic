@@ -21,7 +21,7 @@ pip install -r requirements.txt
 base_model_id: "mistralai/Mistral-7B-v0.1"
 training_dataset_jsonl_path: /path/to/your/train_dataset.jsonl
 eval_dataset_jsonl_path: /path/to/your/eval_dataset.jsonl
-prompt_template: "### question: {input}\n ### answer: {output}"
+prompt_template: "### question: {input}\n ### answer: {answer} </s>"
 tokenizer_max_length: 256
 bnb_config:
   load_in_4bit: true
@@ -68,13 +68,13 @@ accelerate launch train.py config.yaml # example_config.yaml is a good start
 
 ### Dataset Format
 
-Input data should be in the `jsonl` format, with each line containing an `input`
-and `output` field pair. Here are few example lines from the dataset:
+Input data should be in the `jsonl` format, with each line containing an `question`
+and `answer` field pair. Here are few example lines from the dataset:
 
 ```
-{"input": "What is the capital of France?", "output": "The capital of France is Paris."}
-{"input": "Who wrote 'Pride and Prejudice'?", "output": "Pride and Prejudice was written by Jane Austen."}
-{"input": "When was the Declaration of Independence signed?", "output": "The Declaration of Independence was signed on July 4, 1776."}
+{"question": "What is the capital of France?", "answer": "The capital of France is Paris."}
+{"question": "Who wrote 'Pride and Prejudice'?", "answer": "Pride and Prejudice was written by Jane Austen."}
+{"question": "When was the Declaration of Independence signed?", "answer": "The Declaration of Independence was signed on July 4, 1776."}
 ```
 
 ## Configuration Details
