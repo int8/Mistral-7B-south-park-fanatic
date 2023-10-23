@@ -1,4 +1,6 @@
 # South Park Fanatic Mistral-7B Fine-Tuning on Multiple GPUs
+[corresponding blog post here](https://int8.io/train-your-own-south-park-fanatic-ai-with-mistral-7b/)
+
 
 This repository contains scripts for
 - generating data with GPT-4 via `rq` 
