@@ -23,7 +23,7 @@ pip install -r requirements.txt
 base_model_id: "mistralai/Mistral-7B-v0.1"
 training_dataset_jsonl_path: /path/to/your/train_dataset.jsonl
 eval_dataset_jsonl_path: /path/to/your/eval_dataset.jsonl
-prompt_template: "### question: {input}\n ### answer: {answer} </s>"
+prompt_template: "### question: {question}\n ### answer: {answer} </s>"
 tokenizer_max_length: 256
 bnb_config:
   load_in_4bit: true
